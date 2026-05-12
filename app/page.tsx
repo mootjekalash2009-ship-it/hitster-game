@@ -156,11 +156,11 @@ export default function Home() {
 
       <div className="flex gap-6">
         <div className="flex-1">
-          <h1 className="text-6xl font-bold mb-10">
-            HITSTER
+          <h1 className="text-6xl font-bold mb-10 text-cyan-400">
+            TIMELINE BEATS
           </h1>
 
-          <div className="bg-gray-950 p-6 rounded-3xl mb-10 inline-block">
+          <div className="bg-gray-950 p-6 rounded-3xl mb-10 inline-block border border-cyan-500">
             <h2 className="text-3xl mb-6">
               Nummer toevoegen
             </h2>
@@ -204,7 +204,7 @@ export default function Home() {
 
               <button
                 onClick={addSong}
-                className="bg-green-500 p-3 rounded-xl"
+                className="bg-cyan-500 text-black p-3 rounded-xl font-bold"
               >
                 Voeg kaart toe
               </button>
@@ -248,14 +248,14 @@ export default function Home() {
                             onClick={() =>
                               playSong(song)
                             }
-                            className="bg-green-500 p-3 rounded-xl text-xl"
+                            className="bg-cyan-400 text-black p-3 rounded-xl text-xl font-bold"
                           >
                             PLAY 60 SEC
                           </button>
 
                           <button
                             onClick={pauseSong}
-                            className="bg-yellow-500 text-black p-3 rounded-xl text-xl"
+                            className="bg-yellow-400 text-black p-3 rounded-xl text-xl font-bold"
                           >
                             PAUZE
                           </button>
@@ -264,24 +264,24 @@ export default function Home() {
                             onClick={() =>
                               flipCard(index)
                             }
-                            className="bg-white text-black p-3 rounded-xl text-xl"
+                            className="bg-white text-black p-3 rounded-xl text-xl font-bold"
                           >
                             FLIP
                           </button>
                         </div>
                       </div>
                     ) : (
-                      <div className="p-8 h-full flex flex-col justify-between bg-black/20 backdrop-blur-sm">
+                      <div className="p-8 h-full flex flex-col justify-between bg-white/70 backdrop-blur-sm">
                         <div>
-                          <p className="text-4xl font-bold mb-4 text-black">
+                          <p className="text-5xl font-black mb-4 text-black">
                             {song.year}
                           </p>
 
-                          <p className="text-2xl mb-2 text-black font-bold">
+                          <p className="text-3xl mb-2 text-black font-bold">
                             {song.title}
                           </p>
 
-                          <p className="text-xl text-black">
+                          <p className="text-2xl text-black">
                             {song.artist}
                           </p>
                         </div>
@@ -297,7 +297,7 @@ export default function Home() {
                                     team
                                   )
                                 }
-                                className="bg-green-500 p-2 rounded-xl"
+                                className="bg-cyan-500 text-black p-2 rounded-xl font-bold"
                               >
                                 Geef aan {team}
                               </button>
@@ -306,7 +306,7 @@ export default function Home() {
                         </div>
 
                         {song.team && (
-                          <p className="mt-4 text-green-400">
+                          <p className="mt-4 text-green-700 font-bold">
                             Kaart staat bij:{" "}
                             {song.team}
                           </p>
@@ -316,7 +316,7 @@ export default function Home() {
                           onClick={() =>
                             flipCard(index)
                           }
-                          className="bg-white text-black mt-4 p-2 rounded-xl"
+                          className="bg-white border border-black text-black mt-4 p-2 rounded-xl font-bold"
                         >
                           DRAAI TERUG
                         </button>
@@ -325,7 +325,7 @@ export default function Home() {
                           onClick={() =>
                             removeSong(index)
                           }
-                          className="bg-red-500 mt-4 p-2 rounded-xl"
+                          className="bg-red-500 mt-4 p-2 rounded-xl font-bold"
                         >
                           Verwijder kaart
                         </button>
@@ -338,8 +338,8 @@ export default function Home() {
         </div>
 
         <div className="w-[320px]">
-          <div className="sticky top-6 bg-gray-950 p-6 rounded-3xl">
-            <h2 className="text-3xl mb-6">
+          <div className="sticky top-6 bg-gray-950 p-6 rounded-3xl border border-cyan-500">
+            <h2 className="text-3xl mb-6 text-cyan-400">
               Teams
             </h2>
 
@@ -355,7 +355,7 @@ export default function Home() {
 
               <button
                 onClick={addTeam}
-                className="bg-green-500 px-4 rounded-xl"
+                className="bg-cyan-500 text-black px-4 rounded-xl font-bold"
               >
                 +
               </button>
@@ -379,7 +379,7 @@ export default function Home() {
                     key={index}
                     className="bg-gray-900 p-4 rounded-2xl break-words"
                   >
-                    <h3 className="text-2xl font-bold mb-4">
+                    <h3 className="text-2xl font-bold mb-4 text-cyan-300">
                       {team}
                     </h3>
 
@@ -393,7 +393,7 @@ export default function Home() {
                             key={songIndex}
                             className="bg-gray-800 p-3 rounded-xl min-w-[140px]"
                           >
-                            <p className="font-bold">
+                            <p className="font-bold text-cyan-300">
                               {song.year}
                             </p>
 
@@ -428,7 +428,7 @@ export default function Home() {
 
                                 setSongs(copy)
                               }}
-                              className="bg-red-500 mt-3 px-3 py-1 rounded-lg"
+                              className="bg-red-500 mt-3 px-3 py-1 rounded-lg font-bold"
                             >
                               Verwijder
                             </button>
