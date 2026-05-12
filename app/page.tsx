@@ -18,8 +18,7 @@ export default function Home() {
   const [file, setFile] = useState<any>(null)
 
   const [timeLeft, setTimeLeft] =
-    useState(300
-    )
+    useState(300)
 
   const [winner, setWinner] =
     useState("")
@@ -43,19 +42,19 @@ export default function Home() {
   }, [songs])
 
   useEffect(() => {
-  if (!winner) return
+    if (!winner) return
 
-  if (timeLeft <= 0) {
-    setTeams([])
-    return
-  }
+    if (timeLeft <= 0) {
+      setTeams([])
+      return
+    }
 
-  const timer = setInterval(() => {
-    setTimeLeft((prev) => prev - 1)
-  }, 1000)
+    const timer = setInterval(() => {
+      setTimeLeft((prev) => prev - 1)
+    }, 1000)
 
-  return () => clearInterval(timer)
-}, [timeLeft, winner])
+    return () => clearInterval(timer)
+  }, [timeLeft, winner])
 
   function addTeam() {
     if (!teamName) return
@@ -223,16 +222,23 @@ export default function Home() {
                 .map((song, index) => (
                   <div
                     key={index}
-                    className="bg-gray-900 rounded-3xl p-6 w-[300px] min-h-[400px] flex flex-col justify-between"
+                    className="relative rounded-[40px] overflow-hidden w-[320px] h-[500px] flex flex-col justify-between bg-cover bg-center border-[6px] border-cyan-400 shadow-[0_0_40px_rgba(0,255,255,0.4)]"
+                    style={{
+                      backgroundImage: `url(${
+                        !song.flipped
+                          ? "/card-back.png"
+                          : "/card-front.png"
+                      })`,
+                    }}
                   >
                     {!song.flipped ? (
-                      <>
+                      <div className="p-8 h-full flex flex-col justify-between bg-black/30 backdrop-blur-sm">
                         <div>
-                          <p className="text-4xl mb-4">
+                          <p className="text-7xl mb-6 text-cyan-300 drop-shadow-[0_0_20px_cyan]">
                             🎵
                           </p>
 
-                          <p className="text-2xl">
+                          <p className="text-3xl font-bold text-white">
                             Raad het nummer
                           </p>
                         </div>
@@ -242,14 +248,14 @@ export default function Home() {
                             onClick={() =>
                               playSong(song)
                             }
-                            className="bg-green-500 p-3 rounded-xl"
+                            className="bg-green-500 p-3 rounded-xl text-xl"
                           >
                             PLAY 60 SEC
                           </button>
 
                           <button
                             onClick={pauseSong}
-                            className="bg-yellow-500 text-black p-3 rounded-xl"
+                            className="bg-yellow-500 text-black p-3 rounded-xl text-xl"
                           >
                             PAUZE
                           </button>
@@ -258,25 +264,25 @@ export default function Home() {
                             onClick={() =>
                               flipCard(index)
                             }
-                            className="bg-white text-black p-3 rounded-xl"
+                            className="bg-white text-black p-3 rounded-xl text-xl"
                           >
                             FLIP
                           </button>
                         </div>
-                      </>
+                      </div>
                     ) : (
-                      <>
+                      <div className="p-8 h-full flex flex-col justify-between bg-black/20 backdrop-blur-sm">
                         <div>
-                          <p className="text-3xl font-bold mb-4">
+                          <p className="text-4xl font-bold mb-4 text-black">
+                            {song.year}
+                          </p>
+
+                          <p className="text-2xl mb-2 text-black font-bold">
                             {song.title}
                           </p>
 
-                          <p className="text-2xl mb-2">
+                          <p className="text-xl text-black">
                             {song.artist}
-                          </p>
-
-                          <p className="text-xl">
-                            {song.year}
                           </p>
                         </div>
 
@@ -323,7 +329,7 @@ export default function Home() {
                         >
                           Verwijder kaart
                         </button>
-                      </>
+                      </div>
                     )}
                   </div>
                 ))}
@@ -358,15 +364,15 @@ export default function Home() {
             <div className="flex flex-col gap-6">
               {teams.map((team, index) => {
                 const teamSongs = songs
-  .filter(
-    (song) =>
-      song.team === team
-  )
-  .sort(
-    (a, b) =>
-      Number(a.year) -
-      Number(b.year)
-  )
+                  .filter(
+                    (song) =>
+                      song.team === team
+                  )
+                  .sort(
+                    (a, b) =>
+                      Number(a.year) -
+                      Number(b.year)
+                  )
 
                 return (
                   <div
@@ -379,52 +385,56 @@ export default function Home() {
 
                     <div className="flex gap-2 overflow-x-auto">
                       {teamSongs.map(
-  (
-    song,
-    songIndex
-  ) => (
-    <div
-      key={songIndex}
-      className="bg-gray-800 p-3 rounded-xl min-w-[140px]"
-    >
-      <p className="font-bold">
-        {song.year}
-      </p>
+                        (
+                          song,
+                          songIndex
+                        ) => (
+                          <div
+                            key={songIndex}
+                            className="bg-gray-800 p-3 rounded-xl min-w-[140px]"
+                          >
+                            <p className="font-bold">
+                              {song.year}
+                            </p>
 
-      <p>
-        {song.title}
-      </p>
+                            <p>
+                              {song.title}
+                            </p>
 
-      <p>
-        {song.artist}
-      </p>
+                            <p>
+                              {song.artist}
+                            </p>
 
-      <button
-        onClick={() => {
-          const copy = [...songs]
+                            <button
+                              onClick={() => {
+                                const copy = [
+                                  ...songs,
+                                ]
 
-          const realIndex =
-            songs.findIndex(
-              (s) =>
-                s.title ===
-                  song.title &&
-                s.artist ===
-                  song.artist &&
-                s.year ===
-                  song.year
-            )
+                                const realIndex =
+                                  songs.findIndex(
+                                    (s) =>
+                                      s.title ===
+                                        song.title &&
+                                      s.artist ===
+                                        song.artist &&
+                                      s.year ===
+                                        song.year
+                                  )
 
-          copy[realIndex].team = ""
+                                copy[
+                                  realIndex
+                                ].team = ""
 
-          setSongs(copy)
-        }}
-        className="bg-red-500 mt-3 px-3 py-1 rounded-lg"
-      >
-        Verwijder
-      </button>
-    </div>
-  )
-)}
+                                setSongs(copy)
+                              }}
+                              className="bg-red-500 mt-3 px-3 py-1 rounded-lg"
+                            >
+                              Verwijder
+                            </button>
+                          </div>
+                        )
+                      )}
 
                       {teamSongs.length ===
                         0 && (
